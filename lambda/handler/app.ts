@@ -20,7 +20,7 @@ export const pingHandler = async () => {
  * Sends a failed metric to Cloudwatch metrics
  */
 async function logCouldwatchError() {
-  const params: PutMetricDataCommandInput = {
+  const params = {
     MetricData: [
       {
         Timestamp: new Date(),
@@ -33,6 +33,6 @@ async function logCouldwatchError() {
     Namespace: "api-errors",
   };
   const command = new PutMetricDataCommand(params);
-  let result: PutMetricDataCommandOutput = await client.send(command);
+  let result = await client.send(command);
   console.log(`Send metric, got result ${result}`);
 }
